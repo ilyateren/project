@@ -14,8 +14,8 @@ begin
         then 0
       else sum(value) / sum(quantity) 
     end
-  from dbo.Basket
-  where ID_SKU = @ID_SKU
+  from dbo.Basket as b
+  where b.ID_SKU = @ID_SKU
   
   return @Price
 end;
