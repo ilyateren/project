@@ -1,0 +1,6 @@
+create view dbo.vw_SKUPrice
+as
+	select
+		s.*
+		,dbo.udf_GetSKUPrice(s.ID) as gsp
+	from dbo.SKU as s
