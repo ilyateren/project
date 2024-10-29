@@ -9,7 +9,7 @@ begin
 	)
 	begin
 		print 'Данной семьи нет'
-		return;
+		return
 	end
 	update f
 	set f.BudgetValue = f.BudgetValue - (
