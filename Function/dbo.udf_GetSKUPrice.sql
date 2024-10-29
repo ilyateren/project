@@ -8,7 +8,7 @@ begin
 		@Price decimal(18, 2)
 		,@TotalQuantity int
 		,@TotalValue decimal(18, 2)
-	
+	v
 	select
 		@TotalQuantity = sum(quantity)
 		,@TotalValue = sum(value)
