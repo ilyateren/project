@@ -1,21 +1,24 @@
 create or alter function dbo.udf_GetSKUPrice(
-  @ID_SKU int
+	@ID_SKU int
 )
 returns decimal(18, 2)
 as
 begin
-  declare
-    @Price decimal(18, 2)
-  
-  select 
-    @Price = 
-    case 
-      when sum(quantity) = 0 
-        then 0
-      else sum(value) / sum(quantity) 
-    end
-  from dbo.Basket as b
-  where b.ID_SKU = @ID_SKU
-  
-  return @Price
+	declare
+		@Price decimal(18, 2)
+		,@TotalQuantity int
+		,@TotalValue decimal(18, 2)
+	
+	select
+		@TotalQuantity = sum(quantity)
+		,@TotalValue = sum(value)
+	from dbo.Basket as b
+	where b.ID_SKU = @ID_SKU
+
+	if (@TotalQuantity = 0)
+		set @Price = 0
+	else
+		set @Price = @TotalValue / @TotalQuantity
+	
+	return @Price
 end;
