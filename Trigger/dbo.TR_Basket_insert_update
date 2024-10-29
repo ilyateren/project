@@ -2,7 +2,7 @@ create trigger dbo.tr_Basket_insert_update on dbo.Basket
 after insert
 as
 begin
-  if (select count(*) from inserted as i group by ID_SKU having count(*) >= 2) > 0
+	if (select count(*) from inserted as i group by ID_SKU having count(*) >= 2) > 0
 	begin
 		update b
 		set DiscountValue = Value * 0.05
